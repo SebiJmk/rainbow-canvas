@@ -10,7 +10,7 @@ import MenuCTA from "@/components/MenuCTA";
 import SocialSection from "@/components/SocialSection";
 import ReservationSection from "@/components/ReservationSection";
 import Footer from "@/components/Footer";
-import StickyBottomBar from "@/components/StickyBottomBar";
+
 
 const Index = () => {
   const [loaded, setLoaded] = useState(() => !!sessionStorage.getItem("rc-loaded"));
@@ -39,7 +39,6 @@ const Index = () => {
         <ReservationSection />
         <Footer />
       </main>
-      <StickyBottomBar />
     </>
   );
 };

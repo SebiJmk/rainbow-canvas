@@ -4,7 +4,7 @@ import CustomCursor from "@/components/CustomCursor";
 import Navbar from "@/components/Navbar";
 import ScrollProgress from "@/components/ScrollProgress";
 import Footer from "@/components/Footer";
-import StickyBottomBar from "@/components/StickyBottomBar";
+
 
 interface MenuItem {
   name: string;
@@ -226,7 +226,6 @@ const MenuPage = () => {
           <div className="w-[60px] h-[2px] rainbow-line mx-auto mt-4" />
         </div>
 
-        {/* Tabs */}
         <div className="overflow-x-auto scrollbar-none">
           <div className="flex justify-center gap-2 px-4 min-w-max mx-auto">
             {tabs.map((tab) => (
@@ -275,7 +274,6 @@ const MenuPage = () => {
 
         <Footer />
       </main>
-      <StickyBottomBar />
     </>
   );
 };
