@@ -14,8 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        heading: ['Playfair Display', 'serif'],
-        body: ['Inter', 'sans-serif'],
+        heading: ['Cormorant Garamond', 'serif'],
+        body: ['DM Sans', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -51,14 +51,9 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        gold: "hsl(var(--gold))",
-        "surface-elevated": "hsl(var(--surface-elevated))",
-        "rainbow-red": "hsl(var(--rainbow-red))",
-        "rainbow-orange": "hsl(var(--rainbow-orange))",
-        "rainbow-yellow": "hsl(var(--rainbow-yellow))",
-        "rainbow-green": "hsl(var(--rainbow-green))",
-        "rainbow-blue": "hsl(var(--rainbow-blue))",
-        "rainbow-violet": "hsl(var(--rainbow-violet))",
+        amber: "#c8a96e",
+        surface: "hsl(var(--surface))",
+        "footer-bg": "hsl(var(--footer-bg))",
       },
       borderRadius: {
         lg: "var(--radius)",

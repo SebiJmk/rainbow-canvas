@@ -1,121 +1,77 @@
 import { motion } from "framer-motion";
-import { useEffect, useRef } from "react";
-import { ChevronDown } from "lucide-react";
-
-const rainbowColors = [
-  "hsl(0,100%,60%)",
-  "hsl(30,100%,55%)",
-  "hsl(45,100%,50%)",
-  "hsl(140,70%,45%)",
-  "hsl(210,100%,55%)",
-  "hsl(250,80%,65%)",
-  "hsl(280,80%,60%)",
-];
-
-const Particles = () => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    const resize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-    resize();
-    window.addEventListener("resize", resize);
-
-    const particles: { x: number; y: number; speed: number; size: number; opacity: number }[] = [];
-    for (let i = 0; i < 50; i++) {
-      particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        speed: 0.2 + Math.random() * 0.5,
-        size: 1 + Math.random() * 2,
-        opacity: 0.1 + Math.random() * 0.3,
-      });
-    }
-
-    let animId: number;
-    const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach((p) => {
-        p.y -= p.speed;
-        if (p.y < -10) {
-          p.y = canvas.height + 10;
-          p.x = Math.random() * canvas.width;
-        }
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255,255,255,${p.opacity})`;
-        ctx.fill();
-      });
-      animId = requestAnimationFrame(animate);
-    };
-    animate();
-    return () => {
-      cancelAnimationFrame(animId);
-      window.removeEventListener("resize", resize);
-    };
-  }, []);
-
-  return <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none" />;
-};
+import { useNavigate } from "react-router-dom";
 
 const HeroSection = () => {
-  const letters = "Rainbow".split("");
+  const navigate = useNavigate();
 
   const scrollTo = (id: string) => {
-    document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <section id="hero" data-cursor="hero" className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
-      <Particles />
+      {/* Background image */}
+      <div className="absolute inset-0">
+        <img
+          src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=1800&q=80"
+          alt=""
+          className="w-full h-full object-cover"
+          loading="eager"
+        />
+        <div
+          className="absolute inset-0"
+          style={{ background: "linear-gradient(to bottom, rgba(8,8,8,0.5) 0%, rgba(8,8,8,0.95) 100%)" }}
+        />
+      </div>
 
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.3 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
         className="relative z-10 text-center px-4"
       >
-        <h1 className="font-heading font-bold text-[clamp(3.5rem,8vw,6rem)] leading-none mb-2">
-          {letters.map((letter, i) => (
-            <span key={i} style={{ color: rainbowColors[i % rainbowColors.length] }}>
-              {letter}
-            </span>
-          ))}
+        <p className="font-body text-[11px] tracking-[0.2em] uppercase text-amber mb-6">
+          Est. București · Bd. Decebal 14
+        </p>
+        <h1 className="font-heading text-[clamp(4rem,10vw,100px)] font-light italic text-white leading-none mb-3">
+          Rainbow
         </h1>
-        <p className="font-heading italic text-foreground/70 text-lg md:text-xl tracking-wider">
-          coffee & more
+        <p className="font-body text-[16px] font-light text-white/50 tracking-[0.1em]">
+          coffee &amp; more
         </p>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10">
+        <div className="flex items-center justify-center gap-4 mt-10">
           <button
-            onClick={() => scrollTo("#menu")}
-            className="px-8 py-3 rounded-full rainbow-gradient text-background font-body font-semibold text-sm tracking-wide hover:scale-[1.04] transition-transform"
+            onClick={() => navigate("/meniu")}
+            className="font-body text-[13px] uppercase tracking-[0.1em] text-white px-8 py-3 transition-colors"
+            style={{ border: "1px solid rgba(255,255,255,0.3)", background: "transparent" }}
+            onMouseEnter={(e) => { e.currentTarget.style.background = "white"; e.currentTarget.style.color = "#080808"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "white"; }}
           >
-            Vezi Meniul
+            Descoperă Meniul
           </button>
           <button
-            onClick={() => scrollTo("#rezerva")}
-            className="px-8 py-3 rounded-full border border-foreground/40 text-foreground font-body text-sm tracking-wide hover:scale-[1.04] hover:border-foreground transition-all"
+            onClick={() => scrollTo("rezerva")}
+            className="font-body text-[13px] uppercase tracking-[0.1em] text-white px-8 py-3 transition-colors"
+            style={{ border: "1px solid rgba(255,255,255,0.3)", background: "transparent" }}
+            onMouseEnter={(e) => { e.currentTarget.style.background = "white"; e.currentTarget.style.color = "#080808"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "white"; }}
           >
             Rezervă o Masă
           </button>
         </div>
       </motion.div>
 
-      <motion.div
-        className="absolute bottom-8 z-10"
-        animate={{ y: [0, 8, 0] }}
-        transition={{ repeat: Infinity, duration: 2 }}
-      >
-        <ChevronDown className="w-6 h-6 text-foreground/40" />
-      </motion.div>
+      {/* Scroll indicator */}
+      <div className="absolute bottom-8 z-10 flex flex-col items-center gap-2">
+        <span className="font-body text-[10px] uppercase tracking-[0.2em] text-white/30">Scroll</span>
+        <motion.div
+          className="w-[1px] bg-white/30"
+          initial={{ height: 0 }}
+          animate={{ height: 40 }}
+          transition={{ duration: 1.2, repeat: Infinity, repeatType: "loop" }}
+        />
+      </div>
     </section>
   );
 };
