@@ -1,141 +1,124 @@
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import RainbowLogo from "./RainbowLogo";
 
-const links = [
-  { label: "Home", href: "#hero" },
-  { label: "Menu", href: "#menu" },
-  { label: "Rezervă", href: "#rezerva" },
-  { label: "Galerie", href: "#galerie" },
-  { label: "Contact", href: "#contact" },
+const navLinks = [
+  { label: "Acasă", href: "/#hero" },
+  { label: "Preferatele Casei", href: "/#preferatele" },
+  { label: "Meniu", href: "/meniu" },
+  { label: "Rezervă", href: "/#rezerva" },
+  { label: "Contact", href: "/#footer" },
 ];
 
-const Navbar = () => {
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [active, setActive] = useState("#hero");
+const Navbar = ({ showBack = false }: { showBack?: boolean }) => {
+  const [open, setOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  const scrollTo = (href: string) => {
-    setMobileOpen(false);
-    setActive(href);
-    const el = document.querySelector(href);
-    el?.scrollIntoView({ behavior: "smooth" });
+  const handleNav = (href: string) => {
+    setOpen(false);
+    if (href.startsWith("/#")) {
+      const id = href.slice(2);
+      if (location.pathname === "/") {
+        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+      } else {
+        navigate("/", { state: { scrollTo: id } });
+      }
+    } else {
+      navigate(href);
+    }
   };
 
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
-          scrolled ? "bg-background/80 backdrop-blur-md" : "bg-transparent"
-        }`}
+        className="fixed top-0 left-0 right-0 z-[100] flex items-center justify-between px-6 h-16"
+        style={{
+          background: "rgba(8,8,8,0.85)",
+          backdropFilter: "blur(12px)",
+          borderBottom: "1px solid rgba(255,255,255,0.06)",
+        }}
       >
-        <div className="max-w-7xl mx-auto px-4 md:px-8 h-16 flex items-center justify-between">
-          {/* Logo */}
-          <button onClick={() => scrollTo("#hero")} className="flex items-center gap-2">
-            <svg width="32" height="18" viewBox="0 0 120 60">
-              <defs>
-                <linearGradient id="nav-rainbow" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="hsl(0,100%,60%)" />
-                  <stop offset="20%" stopColor="hsl(30,100%,55%)" />
-                  <stop offset="40%" stopColor="hsl(50,100%,55%)" />
-                  <stop offset="60%" stopColor="hsl(140,70%,45%)" />
-                  <stop offset="80%" stopColor="hsl(210,100%,55%)" />
-                  <stop offset="100%" stopColor="hsl(280,80%,60%)" />
-                </linearGradient>
-              </defs>
-              <path d="M10 55 Q60 -10 110 55" stroke="url(#nav-rainbow)" strokeWidth="5" fill="none" strokeLinecap="round" />
-            </svg>
-            <span className="font-heading text-foreground text-sm tracking-wide hidden sm:inline">Rainbow</span>
-          </button>
-
-          {/* Desktop links */}
-          <div className="hidden md:flex items-center gap-8">
-            {links.map((l) => (
-              <button
-                key={l.href}
-                onClick={() => scrollTo(l.href)}
-                className={`text-sm font-body tracking-wide transition-colors relative pb-1 ${
-                  active === l.href ? "text-foreground" : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                {l.label}
-                {active === l.href && (
-                  <motion.div layoutId="nav-underline" className="absolute bottom-0 left-0 right-0 h-[2px] rainbow-gradient rounded-full" />
-                )}
-              </button>
-            ))}
-          </div>
-
-          {/* CTA + Hamburger */}
-          <div className="flex items-center gap-3">
+        <div className="flex items-center gap-4">
+          {showBack && (
             <button
-              onClick={() => scrollTo("#rezerva")}
-              className="hidden md:block text-sm px-5 py-2 rounded-full border border-foreground/30 text-foreground hover:rainbow-gradient hover:text-background transition-all duration-300"
-              style={{
-                backgroundImage: "none",
-              }}
-              onMouseEnter={(e) => {
-                (e.target as HTMLElement).style.backgroundImage =
-                  "linear-gradient(90deg, hsl(0,100%,60%), hsl(30,100%,55%), hsl(50,100%,55%), hsl(140,70%,45%), hsl(210,100%,55%), hsl(280,80%,60%))";
-                (e.target as HTMLElement).style.color = "hsl(0,0%,4%)";
-                (e.target as HTMLElement).style.borderColor = "transparent";
-              }}
-              onMouseLeave={(e) => {
-                (e.target as HTMLElement).style.backgroundImage = "none";
-                (e.target as HTMLElement).style.color = "";
-                (e.target as HTMLElement).style.borderColor = "";
-              }}
+              onClick={() => navigate("/")}
+              className="font-body text-[13px] text-white/60 hover:text-white tracking-wide"
             >
-              Rezervă o Masă
+              ← Înapoi
             </button>
-
-            <button
-              className="md:hidden text-foreground p-2"
-              onClick={() => setMobileOpen(!mobileOpen)}
-              aria-label="Toggle menu"
-            >
-              <div className="space-y-1.5">
-                <motion.div animate={mobileOpen ? { rotate: 45, y: 6 } : {}} className="w-6 h-[2px] bg-foreground" />
-                <motion.div animate={mobileOpen ? { opacity: 0 } : {}} className="w-6 h-[2px] bg-foreground" />
-                <motion.div animate={mobileOpen ? { rotate: -45, y: -6 } : {}} className="w-6 h-[2px] bg-foreground" />
-              </div>
-            </button>
-          </div>
+          )}
+          <Link to="/">
+            <RainbowLogo width={100} />
+          </Link>
         </div>
+
+        <div className="hidden md:flex items-center gap-8">
+          {navLinks.map((l) => (
+            <button
+              key={l.label}
+              onClick={() => handleNav(l.href)}
+              className="font-body text-[13px] uppercase tracking-[0.12em] text-white/70 hover:text-white transition-opacity"
+            >
+              {l.label}
+            </button>
+          ))}
+        </div>
+
+        <div className="hidden md:block">
+          <button
+            onClick={() => handleNav("/#rezerva")}
+            className="font-body text-[13px] uppercase tracking-[0.12em] text-white px-5 py-2 transition-colors"
+            style={{ border: "1px solid rgba(255,255,255,0.3)", background: "transparent" }}
+            onMouseEnter={(e) => (e.currentTarget.style.background = "#1c1c1c")}
+            onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+          >
+            Rezervă o Masă
+          </button>
+        </div>
+
+        <button
+          className="md:hidden text-white"
+          onClick={() => setOpen(!open)}
+          aria-label="Menu"
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+            {open ? (
+              <path d="M6 6l12 12M6 18L18 6" />
+            ) : (
+              <>
+                <path d="M4 7h16" />
+                <path d="M4 12h16" />
+                <path d="M4 17h16" />
+              </>
+            )}
+          </svg>
+        </button>
       </nav>
 
-      {/* Mobile overlay */}
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[99] bg-background/95 backdrop-blur-xl flex flex-col items-center justify-center gap-8"
-          >
-            {links.map((l) => (
-              <button
-                key={l.href}
-                onClick={() => scrollTo(l.href)}
-                className="font-heading text-2xl text-foreground hover:rainbow-text transition-colors"
-              >
-                {l.label}
-              </button>
-            ))}
+      {open && (
+        <div
+          className="fixed inset-0 z-[99] flex flex-col items-center justify-center gap-8"
+          style={{ background: "rgba(8,8,8,0.97)" }}
+        >
+          {navLinks.map((l) => (
             <button
-              onClick={() => scrollTo("#rezerva")}
-              className="mt-4 px-8 py-3 rounded-full rainbow-gradient text-background font-body font-semibold"
+              key={l.label}
+              onClick={() => handleNav(l.href)}
+              className="font-heading text-3xl italic text-white/80 hover:text-white"
             >
-              Rezervă o Masă
+              {l.label}
             </button>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          ))}
+          <button
+            onClick={() => handleNav("/#rezerva")}
+            className="mt-4 font-body text-[13px] uppercase tracking-[0.12em] text-white px-8 py-3"
+            style={{ border: "1px solid rgba(255,255,255,0.3)" }}
+          >
+            Rezervă o Masă
+          </button>
+        </div>
+      )}
     </>
   );
 };

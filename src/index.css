@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,38 +6,29 @@
 
 @layer base {
   :root {
-    --background: 0 0% 4%;
+    --background: 0 0% 3.1%;
     --foreground: 0 0% 100%;
-    --card: 0 0% 7%;
+    --card: 0 0% 6.3%;
     --card-foreground: 0 0% 100%;
-    --popover: 0 0% 7%;
+    --popover: 0 0% 6.3%;
     --popover-foreground: 0 0% 100%;
-    --primary: 43 52% 54%;
-    --primary-foreground: 0 0% 4%;
-    --secondary: 0 0% 10%;
+    --primary: 40 38% 60%;
+    --primary-foreground: 0 0% 3.1%;
+    --secondary: 0 0% 11%;
     --secondary-foreground: 0 0% 88%;
-    --muted: 0 0% 10%;
-    --muted-foreground: 0 0% 64%;
-    --accent: 0 0% 10%;
+    --muted: 0 0% 11%;
+    --muted-foreground: 0 0% 55%;
+    --accent: 0 0% 11%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
     --border: 0 0% 15%;
     --input: 0 0% 12%;
-    --ring: 43 52% 54%;
+    --ring: 40 38% 60%;
     --radius: 0.75rem;
-
-    --rainbow-red: 0 100% 60%;
-    --rainbow-orange: 30 100% 55%;
-    --rainbow-yellow: 50 100% 55%;
-    --rainbow-green: 140 70% 45%;
-    --rainbow-blue: 210 100% 55%;
-    --rainbow-violet: 280 80% 60%;
-    --gold: 43 52% 54%;
-    --surface-elevated: 0 0% 10%;
-
-    --font-heading: 'Playfair Display', serif;
-    --font-body: 'Inter', sans-serif;
+    --amber: 40 38% 60%;
+    --surface: 0 0% 5%;
+    --footer-bg: 0 0% 2%;
   }
 }
 
@@ -47,11 +38,11 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: var(--font-body);
+    font-family: 'DM Sans', sans-serif;
     cursor: none;
   }
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-heading);
+    font-family: 'Cormorant Garamond', serif;
   }
   a, button {
     cursor: none;
@@ -59,80 +50,26 @@
 }
 
 @layer utilities {
-  .rainbow-gradient {
+  .font-heading {
+    font-family: 'Cormorant Garamond', serif;
+  }
+  .font-body {
+    font-family: 'DM Sans', sans-serif;
+  }
+  .rainbow-line {
     background: linear-gradient(
       90deg,
-      hsl(var(--rainbow-red)),
-      hsl(var(--rainbow-orange)),
-      hsl(var(--rainbow-yellow)),
-      hsl(var(--rainbow-green)),
-      hsl(var(--rainbow-blue)),
-      hsl(var(--rainbow-violet))
+      #ff6b6b,
+      #ffd93d,
+      #6bcb77,
+      #4d96ff,
+      #c77dff
     );
   }
-  .rainbow-text {
-    background: linear-gradient(
-      90deg,
-      hsl(var(--rainbow-red)),
-      hsl(var(--rainbow-orange)),
-      hsl(var(--rainbow-yellow)),
-      hsl(var(--rainbow-green)),
-      hsl(var(--rainbow-blue)),
-      hsl(var(--rainbow-violet))
-    );
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  .text-amber {
+    color: #c8a96e;
   }
-  .rainbow-border {
-    border-image: linear-gradient(
-      90deg,
-      hsl(var(--rainbow-red)),
-      hsl(var(--rainbow-orange)),
-      hsl(var(--rainbow-yellow)),
-      hsl(var(--rainbow-green)),
-      hsl(var(--rainbow-blue)),
-      hsl(var(--rainbow-violet))
-    ) 1;
+  .bg-amber {
+    background-color: #c8a96e;
   }
-  .glass-surface {
-    background: hsl(0 0% 10% / 0.6);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-  }
-  .gold-text {
-    color: hsl(var(--gold));
-  }
-}
-
-@keyframes rainbow-sweep {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
-}
-
-@keyframes typing {
-  from { width: 0; }
-  to { width: 100%; }
-}
-
-@keyframes float-up {
-  0% { transform: translateY(0); opacity: 0.6; }
-  100% { transform: translateY(-100vh); opacity: 0; }
-}
-
-@keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-.animate-rainbow-sweep {
-  animation: rainbow-sweep 1.5s ease-in-out forwards;
-}
-
-.animate-float-up {
-  animation: float-up linear infinite;
-}
-
-.animate-spin-slow {
-  animation: spin-slow 3s linear infinite;
 }
