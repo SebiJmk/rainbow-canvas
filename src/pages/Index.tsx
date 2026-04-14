@@ -8,9 +8,7 @@ import HeroSection from "@/components/HeroSection";
 import FeaturedSection from "@/components/FeaturedSection";
 import MenuCTA from "@/components/MenuCTA";
 import SocialSection from "@/components/SocialSection";
-import ReservationSection from "@/components/ReservationSection";
 import Footer from "@/components/Footer";
-
 
 const Index = () => {
   const [loaded, setLoaded] = useState(() => !!sessionStorage.getItem("rc-loaded"));
@@ -36,7 +34,6 @@ const Index = () => {
         <FeaturedSection />
         <MenuCTA />
         <SocialSection />
-        <ReservationSection />
         <Footer />
       </main>
     </>
