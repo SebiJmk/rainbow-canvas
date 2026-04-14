@@ -274,7 +274,6 @@ const MenuPage = () => {
 
         <Footer />
       </main>
-      </main>
     </>
   );
 };
