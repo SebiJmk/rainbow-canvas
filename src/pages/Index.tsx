@@ -6,7 +6,7 @@ import Navbar from "@/components/Navbar";
 import ScrollProgress from "@/components/ScrollProgress";
 import HeroSection from "@/components/HeroSection";
 import FeaturedSection from "@/components/FeaturedSection";
-import Marquee from "@/components/Marquee";
+import PixelWinePour from "@/components/PixelWinePour";
 import MenuCTA from "@/components/MenuCTA";
 import VibeSection from "@/components/VibeSection";
 import Footer from "@/components/Footer";
@@ -33,7 +33,7 @@ const Index = () => {
       <main className={loaded ? "opacity-100 transition-opacity duration-500" : "opacity-0"}>
         <HeroSection />
         <FeaturedSection />
-        <Marquee />
+        <PixelWinePour />
         <MenuCTA />
         <VibeSection />
         <Footer />
