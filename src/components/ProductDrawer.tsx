@@ -63,7 +63,7 @@ const ProductDrawer = ({ product, onClose }: Props) => (
                 {product.category}
               </span>
             )}
-            <h2 className="font-heading text-[clamp(2rem,5vw,48px)] italic text-white mt-1 leading-tight">
+            <h2 className="font-heading text-[clamp(2rem,5vw,48px)] italic text-white mt-1 leading-tight" style={{ fontFamily: "'Cormorant Garamond', serif" }}>
               {product.name}
             </h2>
             {product.variant && (

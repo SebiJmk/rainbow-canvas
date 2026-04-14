@@ -20,7 +20,7 @@ const items: FeaturedItem[] = [
     description: "Creat special pentru Rainbow, acest cocktail este o experiență vizuală și gustativă. Straturi distincte de siropuri artizanale, fructe proaspete și spirtoase premium se îmbină pentru un rezultat la fel de frumos pe cât este de delicios.",
     ingredients: "Vodkă, sirop de mango, sirop de căpșuni, blue curaçao, lime, soda",
     price: "22 lei",
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1525268323446-0505b6fe7778?w=800&q=80",
   },
   {
     category: "VINURI",
@@ -38,7 +38,7 @@ const items: FeaturedItem[] = [
     description: "Espresso proaspăt extras, whisky irlandez, zahăr brun dizolvat și smântână bătută ușor deasupra. Contrastul dintre amărăciunea cafelei și dulceața cremei — simplu, dar perfect.",
     ingredients: "Espresso, Irish Whiskey, zahăr brun, smântână",
     price: "9 lei",
-    image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1534687941688-651ccaafbff8?w=800&q=80",
   },
 ];
 
