@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
+import ProductDrawer, { type ProductDetail } from "@/components/ProductDrawer";
 
 interface FeaturedItem {
   category: string;
@@ -55,12 +56,12 @@ const useScrollAnimation = () => {
 };
 
 const FeaturedSection = () => {
-  const [selected, setSelected] = useState<FeaturedItem | null>(null);
+  const [selected, setSelected] = useState<ProductDetail | null>(null);
   const { ref, visible } = useScrollAnimation();
 
   return (
     <>
-      <section id="preferatele" data-cursor="featured" className="py-24 px-4" ref={ref}>
+      <section id="preferatele" data-cursor="featured" className="pt-24 pb-8 px-4" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={visible ? { opacity: 1, y: 0 } : {}}
@@ -83,7 +84,14 @@ const FeaturedSection = () => {
               initial={{ opacity: 0, y: 24 }}
               animate={visible ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: i * 0.08 }}
-              onClick={() => setSelected(item)}
+              onClick={() => setSelected({
+                name: item.name,
+                price: item.price,
+                category: item.category,
+                description: item.description,
+                ingredients: item.ingredients,
+                image: item.image,
+              })}
               className="group cursor-none overflow-hidden transition-transform duration-300 hover:-translate-y-1.5"
               style={{
                 background: "#101010",
@@ -118,56 +126,7 @@ const FeaturedSection = () => {
         </div>
       </section>
 
-      {/* Full-page overlay */}
-      <AnimatePresence>
-        {selected && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[999] flex"
-            style={{ background: "#080808" }}
-          >
-            <button
-              onClick={() => setSelected(null)}
-              className="absolute top-6 right-6 text-white/60 hover:text-white z-10"
-              aria-label="Închide"
-            >
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <path d="M6 6l12 12M6 18L18 6" />
-              </svg>
-            </button>
-
-            {/* Left image - hidden on mobile */}
-            <div className="hidden md:block w-[40%] h-full overflow-hidden">
-              <img src={selected.image} alt={selected.name} className="w-full h-full object-cover" />
-            </div>
-
-            {/* Right content */}
-            <div className="flex-1 flex flex-col justify-center px-8 md:px-16 py-12 overflow-y-auto">
-              {/* Mobile image */}
-              <div className="md:hidden w-full aspect-video overflow-hidden mb-8">
-                <img src={selected.image} alt={selected.name} className="w-full h-full object-cover" />
-              </div>
-              <span className="font-body text-[10px] tracking-[0.15em] text-amber uppercase">
-                {selected.category}
-              </span>
-              <h2 className="font-heading text-[clamp(2.5rem,5vw,64px)] italic text-white mt-2 leading-tight">
-                {selected.name}
-              </h2>
-              <div className="w-[40px] h-[2px] rainbow-line mt-4 mb-6" />
-              <p className="font-body text-[15px] text-white/70 leading-relaxed max-w-[500px]">
-                {selected.description}
-              </p>
-              <p className="font-body text-[13px] text-white/40 mt-4">
-                {selected.ingredients}
-              </p>
-              <p className="font-body text-[28px] text-amber mt-8">{selected.price}</p>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <ProductDrawer product={selected} onClose={() => setSelected(null)} />
     </>
   );
 };

@@ -16,13 +16,16 @@ const MenuCTA = () => {
   }, []);
 
   return (
-    <section className="py-24 px-4" ref={ref}>
+    <section className="py-12 px-4 relative" ref={ref}>
       <motion.div
         initial={{ opacity: 0, y: 24 }}
         animate={visible ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.5 }}
-        className="text-center"
+        className="text-center relative z-10"
       >
+        <div className="absolute inset-0 -z-10 flex items-center justify-center pointer-events-none">
+          <div className="w-[400px] h-[200px] rounded-full opacity-[0.06]" style={{ background: "radial-gradient(ellipse, #c8a96e, transparent 70%)" }} />
+        </div>
         <h2 className="font-heading text-[clamp(2.5rem,5vw,48px)] italic text-white">
           Meniu Complet
         </h2>
