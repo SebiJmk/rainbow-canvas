@@ -6,8 +6,7 @@ const navLinks = [
   { label: "Acasă", href: "/#hero" },
   { label: "Preferatele Casei", href: "/#preferatele" },
   { label: "Meniu", href: "/meniu" },
-  { label: "Rezervă", href: "/#rezerva" },
-  { label: "Contact", href: "/#footer" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 const Navbar = ({ showBack = false }: { showBack?: boolean }) => {
@@ -67,13 +66,13 @@ const Navbar = ({ showBack = false }: { showBack?: boolean }) => {
 
         <div className="hidden md:block">
           <button
-            onClick={() => handleNav("/#rezerva")}
+            onClick={() => handleNav("/#contact")}
             className="font-body text-[13px] uppercase tracking-[0.12em] text-white px-5 py-2 transition-colors"
             style={{ border: "1px solid rgba(255,255,255,0.3)", background: "transparent" }}
             onMouseEnter={(e) => (e.currentTarget.style.background = "#1c1c1c")}
             onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
           >
-            Rezervă o Masă
+            Contact
           </button>
         </div>
 
@@ -111,11 +110,11 @@ const Navbar = ({ showBack = false }: { showBack?: boolean }) => {
             </button>
           ))}
           <button
-            onClick={() => handleNav("/#rezerva")}
+            onClick={() => handleNav("/#contact")}
             className="mt-4 font-body text-[13px] uppercase tracking-[0.12em] text-white px-8 py-3"
             style={{ border: "1px solid rgba(255,255,255,0.3)" }}
           >
-            Rezervă o Masă
+            Contact
           </button>
         </div>
       )}

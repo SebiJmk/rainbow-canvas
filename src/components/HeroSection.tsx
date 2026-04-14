@@ -51,13 +51,13 @@ const HeroSection = () => {
             Descoperă Meniul
           </button>
           <button
-            onClick={() => scrollTo("rezerva")}
+            onClick={() => scrollTo("contact")}
             className="font-body text-[13px] uppercase tracking-[0.1em] text-white px-8 py-3 transition-colors"
             style={{ border: "1px solid rgba(255,255,255,0.3)", background: "transparent" }}
             onMouseEnter={(e) => { e.currentTarget.style.background = "white"; e.currentTarget.style.color = "#080808"; }}
             onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "white"; }}
           >
-            Rezervă o Masă
+            Contact
           </button>
         </div>
       </motion.div>
