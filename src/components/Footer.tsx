@@ -37,11 +37,34 @@ const Footer = () => (
           width="100%"
           height="200"
           className="mt-3 rounded"
-          style={{ border: "1px solid rgba(255,255,255,0.08)" }}
+          style={{
+            border: "1px solid rgba(255,255,255,0.08)",
+            filter: "invert(90%) hue-rotate(180deg) contrast(85%) brightness(0.9)",
+          }}
           loading="lazy"
           allowFullScreen
           title="Rainbow Coffee location"
         />
+        <div className="flex gap-2 mt-3">
+          <a
+            href="https://waze.com/ul?ll=44.4288177,26.1343419&navigate=yes"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-body text-[12px] text-white px-4 py-2 rounded text-center flex-1"
+            style={{ background: "#1a1a2e", border: "1px solid rgba(100,150,255,0.3)" }}
+          >
+            ↗ Waze
+          </a>
+          <a
+            href="https://maps.google.com/?q=44.4288177,26.1343419"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-body text-[12px] text-white px-4 py-2 rounded text-center flex-1"
+            style={{ background: "#1a2e1a", border: "1px solid rgba(100,200,100,0.3)" }}
+          >
+            ↗ Google Maps
+          </a>
+        </div>
       </div>
     </div>
 
