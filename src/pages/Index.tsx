@@ -7,7 +7,7 @@ import ScrollProgress from "@/components/ScrollProgress";
 import HeroSection from "@/components/HeroSection";
 import FeaturedSection from "@/components/FeaturedSection";
 import MenuCTA from "@/components/MenuCTA";
-import SocialSection from "@/components/SocialSection";
+import VibeSection from "@/components/VibeSection";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -33,7 +33,7 @@ const Index = () => {
         <HeroSection />
         <FeaturedSection />
         <MenuCTA />
-        <SocialSection />
+        <VibeSection />
         <Footer />
       </main>
     </>

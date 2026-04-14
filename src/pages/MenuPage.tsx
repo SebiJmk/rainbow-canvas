@@ -5,11 +5,11 @@ import Navbar from "@/components/Navbar";
 import ScrollProgress from "@/components/ScrollProgress";
 import Footer from "@/components/Footer";
 
-
 interface MenuItem {
   name: string;
   price: string;
   variant?: string;
+  image: string;
 }
 
 interface MenuSubSection {
@@ -25,183 +25,185 @@ interface MenuTab {
   sections: MenuSubSection[];
 }
 
+const img = (q: string) => `https://images.unsplash.com/${q}?w=200&h=200&fit=crop&q=80`;
+
 const tabs: MenuTab[] = [
   {
     id: "cafea", label: "Cafea", icon: "☕",
-    sections: [{
-      items: [
-        { name: "Espresso", variant: "single / double", price: "5 / 7 lei" },
-        { name: "Cortado", price: "6 lei" },
-        { name: "Cappuccino", variant: "Single / Double", price: "7 / 10 lei" },
-        { name: "Caffe Latte", variant: "Single / Double", price: "8 / 10 lei" },
-        { name: "Flat White", price: "9 lei" },
-        { name: "Irish Coffee", price: "9 lei" },
-        { name: "Bailey's Coffee", price: "9 lei" },
-        { name: "Americano", variant: "Single / Double", price: "5 / 7 lei" },
-        { name: "Ciocolată caldă", price: "7 lei" },
-        { name: "Ceai", variant: "simplu / cu rom", price: "7 / 11 lei" },
-        { name: "Espresso Freddo", price: "7 lei" },
-        { name: "Ice Coffee", price: "8 lei" },
-      ],
-    }],
+    sections: [
+      {
+        label: "Specialități",
+        items: [
+          { name: "Irish Coffee", price: "9 lei", image: img("photo-1509042239860-f550ce710b93") },
+          { name: "Bailey's Coffee", price: "9 lei", image: img("photo-1461023058943-07fcbe16d735") },
+          { name: "Flat White", price: "9 lei", image: img("photo-1572442388796-11668a67e53d") },
+          { name: "Ciocolată caldă", price: "7 lei", image: img("photo-1517578239113-b03992dcdd25") },
+        ],
+      },
+      {
+        label: "Clasice",
+        items: [
+          { name: "Espresso", variant: "single / double", price: "5 / 7 lei", image: img("photo-1510707577719-ae7c14805e3a") },
+          { name: "Cortado", price: "6 lei", image: img("photo-1485808191679-5f86510681a2") },
+          { name: "Cappuccino", variant: "Single / Double", price: "7 / 10 lei", image: img("photo-1572442388796-11668a67e53d") },
+          { name: "Caffe Latte", variant: "Single / Double", price: "8 / 10 lei", image: img("photo-1461023058943-07fcbe16d735") },
+          { name: "Americano", variant: "Single / Double", price: "5 / 7 lei", image: img("photo-1497515114889-3f74b29a6e6c") },
+        ],
+      },
+      {
+        label: "Reci & Ceaiuri",
+        items: [
+          { name: "Espresso Freddo", price: "7 lei", image: img("photo-1517701550927-30cf4ba1dba5") },
+          { name: "Ice Coffee", price: "8 lei", image: img("photo-1461023058943-07fcbe16d735") },
+          { name: "Ceai", variant: "simplu / cu rom", price: "7 / 11 lei", image: img("photo-1544787219-7f47ccb76574") },
+        ],
+      },
+    ],
   },
   {
     id: "bere", label: "Bere", icon: "🍺",
     sections: [
-      { label: "BERE LA DRAUGHT", items: [
-        { name: "Peroni Nastro Azzurro", variant: "400ml", price: "14 lei" },
-        { name: "Ursus Premium", variant: "400ml", price: "10 lei" },
-        { name: "Azuga Nefiltrata", variant: "500ml", price: "15 lei" },
-        { name: "Azuga Helles", variant: "500ml", price: "15 lei" },
-        { name: "Ursus IPA", variant: "400ml", price: "15 lei" },
+      { label: "La Draught", items: [
+        { name: "Peroni Nastro Azzurro", variant: "400ml", price: "14 lei", image: img("photo-1608270586620-248524c67de9") },
+        { name: "Ursus Premium", variant: "400ml", price: "10 lei", image: img("photo-1535958636474-b021ee887b13") },
+        { name: "Azuga Nefiltrata", variant: "500ml", price: "15 lei", image: img("photo-1558642452-9d2a7deb7f62") },
+        { name: "Azuga Helles", variant: "500ml", price: "15 lei", image: img("photo-1558642452-9d2a7deb7f62") },
+        { name: "Ursus IPA", variant: "400ml", price: "15 lei", image: img("photo-1535958636474-b021ee887b13") },
       ]},
-      { label: "BERE LA STICLĂ", items: [
-        { name: "Peroni Nastro Azzurro", variant: "500ml", price: "14 lei" },
-        { name: "Peroni Stile Capri", variant: "330ml", price: "12 lei" },
-        { name: "Ursus Premium", variant: "500ml", price: "10 lei" },
-        { name: "Asahi Super Dry", variant: "330ml", price: "15 lei" },
+      { label: "La Sticlă", items: [
+        { name: "Peroni Nastro Azzurro", variant: "500ml", price: "14 lei", image: img("photo-1608270586620-248524c67de9") },
+        { name: "Peroni Stile Capri", variant: "330ml", price: "12 lei", image: img("photo-1608270586620-248524c67de9") },
+        { name: "Ursus Premium", variant: "500ml", price: "10 lei", image: img("photo-1535958636474-b021ee887b13") },
+        { name: "Asahi Super Dry", variant: "330ml", price: "15 lei", image: img("photo-1535958636474-b021ee887b13") },
       ]},
-      { label: "SPECIALITĂȚI BERE", items: [
-        { name: "Ursus Black", variant: "330ml", price: "10 lei" },
-        { name: "Ursus IPA", variant: "330ml", price: "12 lei" },
+      { label: "Craft & Specialități", items: [
+        { name: "Ursus Black", variant: "330ml", price: "10 lei", image: img("photo-1535958636474-b021ee887b13") },
+        { name: "Ursus IPA", variant: "330ml", price: "12 lei", image: img("photo-1535958636474-b021ee887b13") },
+        { name: "Azuga Nepasteurizată", variant: "500ml", price: "15 lei", image: img("photo-1558642452-9d2a7deb7f62") },
+        { name: "Azuga Weissbier", variant: "500ml", price: "15 lei", image: img("photo-1558642452-9d2a7deb7f62") },
       ]},
-      { label: "BERE FĂRĂ ALCOOL", items: [
-        { name: "Peroni Nastro Azzurro 0.0%", variant: "330ml", price: "12 lei" },
-        { name: "Ursus Cooler", variant: "330ml (Lămâie/Cherry/Grapefruit)", price: "10 lei" },
-      ]},
-      { label: "BERE CRAFT", items: [
-        { name: "Azuga Nepasteurizată", variant: "500ml", price: "15 lei" },
-        { name: "Azuga Weissbier (Nefiltrata)", variant: "500ml", price: "15 lei" },
-        { name: "Azuga Helles", variant: "500ml", price: "15 lei" },
-      ]},
-      { label: "OFERTE", note: "Întrebați barmanul despre ofertele cu frapiere", items: [
-        { name: "Pachet Havana 1L + 4 Răcoritoare / 1 Santal", price: "250 lei" },
-        { name: "Dispenser Ursus 2.4L (ofertă grup)", price: "65 lei" },
+      { label: "Fără Alcool", items: [
+        { name: "Peroni 0.0%", variant: "330ml", price: "12 lei", image: img("photo-1608270586620-248524c67de9") },
+        { name: "Ursus Cooler", variant: "330ml", price: "10 lei", image: img("photo-1535958636474-b021ee887b13") },
       ]},
     ],
   },
   {
     id: "vinuri", label: "Vinuri", icon: "🍷",
     sections: [
-      { label: "ALB & ROZE", items: [
-        { name: "Pahar Prosecco", price: "10 lei" },
-        { name: "Prosecco Terra Serena", variant: "Alb / Rosé", price: "70 / 80 lei" },
-        { name: "Prosecco Millesimato Valdobiadene DOCG", variant: "Alb", price: "130 lei" },
-        { name: "Castel D'or Cava Brut", price: "90 lei" },
-        { name: "Navigo", variant: "Alb / Rosé / pahar", price: "70 / 70 / 18 lei" },
-        { name: "Mysterium", variant: "Alb / Rosé", price: "85 lei" },
-        { name: "Ana / Maria", variant: "Alb", price: "110 lei" },
-        { name: "Esmeralda", variant: "Alb / Rosé / pahar", price: "80 / 80 / 18 lei" },
-        { name: "Tomassi Lugana", variant: "Alb", price: "110 lei" },
-        { name: "Aerosoli", variant: "Rosé / Alb", price: "80 lei" },
-        { name: "Bulgarini Lugana", variant: "Alb", price: "160 lei" },
-        { name: "Charme de Mer", variant: "Rosé", price: "170 lei" },
-        { name: "Côtes de Provence AOP", variant: "Rosé", price: "210 lei" },
-        { name: "Nocturne", variant: "Chardonnay / Pinot Grigio", price: "95 lei" },
-        { name: "Grillo Costadune DOC", variant: "Alb", price: "110 lei" },
-        { name: "Caii de la Letea", variant: "Aligote / Rosé / Cabernet", price: "120 lei" },
-        { name: "Mandrarossa", variant: "Rosé", price: "130 lei" },
-        { name: "Villa Angela", variant: "Alb", price: "130 lei" },
-        { name: "Marche IGT", variant: "Rosé", price: "115 lei" },
+      { label: "Alb & Prosecco", items: [
+        { name: "Pahar Prosecco", price: "10 lei", image: img("photo-1558618666-fcd25c85cd64") },
+        { name: "Prosecco Terra Serena", variant: "Alb / Rosé", price: "70 / 80 lei", image: img("photo-1558618666-fcd25c85cd64") },
+        { name: "Prosecco Millesimato DOCG", price: "130 lei", image: img("photo-1558618666-fcd25c85cd64") },
+        { name: "Navigo", variant: "Alb / Rosé / pahar", price: "70 / 70 / 18 lei", image: img("photo-1510812431401-41d2bd2722f3") },
+        { name: "Mysterium", variant: "Alb / Rosé", price: "85 lei", image: img("photo-1510812431401-41d2bd2722f3") },
+        { name: "Nocturne Chardonnay", price: "95 lei", image: img("photo-1510812431401-41d2bd2722f3") },
       ]},
-      { label: "VIN ROȘU", items: [
-        { name: "Talo Primitivo di Manduria", price: "140 lei" },
-        { name: "Nocture Rară Neagră", price: "95 lei" },
-        { name: "Frescobaldi Castello Rufina", price: "210 lei" },
-        { name: "Ninfa Marche Rosso", price: "170 lei" },
-        { name: "Montepulciano D'Abruzzo", price: "80 lei" },
+      { label: "Rosé Premium", items: [
+        { name: "Charme de Mer", price: "170 lei", image: img("photo-1558618666-fcd25c85cd64") },
+        { name: "Côtes de Provence AOP", price: "210 lei", image: img("photo-1558618666-fcd25c85cd64") },
+        { name: "Mandrarossa", price: "130 lei", image: img("photo-1558618666-fcd25c85cd64") },
+        { name: "Esmeralda", variant: "Rosé / pahar", price: "80 / 18 lei", image: img("photo-1510812431401-41d2bd2722f3") },
+      ]},
+      { label: "Roșu", items: [
+        { name: "Talo Primitivo di Manduria", price: "140 lei", image: img("photo-1510812431401-41d2bd2722f3") },
+        { name: "Frescobaldi Castello Rufina", price: "210 lei", image: img("photo-1510812431401-41d2bd2722f3") },
+        { name: "Ninfa Marche Rosso", price: "170 lei", image: img("photo-1510812431401-41d2bd2722f3") },
+        { name: "Montepulciano D'Abruzzo", price: "80 lei", image: img("photo-1510812431401-41d2bd2722f3") },
       ]},
     ],
   },
   {
     id: "cocktailuri", label: "Cocktailuri", icon: "🍹",
     sections: [
-      { label: "SURSE DE INSPIRAȚIE", items: [
-        { name: "Rainbow", price: "22 lei" },
-        { name: "Mojito", price: "19 lei" },
-        { name: "Aperol Spritz", price: "22 lei" },
-        { name: "Hugo", price: "23 lei" },
-        { name: "ORGASMmm", price: "23 lei" },
-        { name: "Honey Bunny", price: "22 lei" },
-        { name: "White / Black Russian", price: "22 lei" },
-        { name: "Long Island", price: "25 lei" },
-        { name: "Godmother / Father", price: "22 lei" },
-        { name: "Mai Tai", price: "23 lei" },
-        { name: "Vanilla Sky", price: "23 lei" },
-        { name: "Negroni", price: "22 lei" },
-        { name: "Campari", variant: "Orange / Tonic", price: "22 / 21 lei" },
-        { name: "Vodka", variant: "Tonic / Santal", price: "20 / 21 lei" },
-        { name: "Cosmopolitan", price: "25 lei" },
-        { name: "Margarita", price: "25 lei" },
-        { name: "Amaretto Sour", price: "20 lei" },
-        { name: "Blue Lagoon", price: "22 lei" },
-        { name: "Cuba Libre", price: "20 lei" },
-        { name: "Gin Tonic", price: "20 lei" },
-        { name: "Whitley Tonic", price: "27 lei" },
-        { name: "Hendrick's Tonic", price: "30 lei" },
-        { name: "Monkey 47 Tonic", price: "33 lei" },
-        { name: "Malibu", variant: "Coke / Santal", price: "22 / 23 lei" },
+      { label: "Signature & Clasice", items: [
+        { name: "Rainbow", price: "22 lei", image: img("photo-1514362545857-3bc16c4c7d1b") },
+        { name: "Mojito", price: "19 lei", image: img("photo-1551538827-9c037cb4f32a") },
+        { name: "Aperol Spritz", price: "22 lei", image: img("photo-1560512823-829485b8bf24") },
+        { name: "Hugo", price: "23 lei", image: img("photo-1558618666-fcd25c85cd64") },
+        { name: "Negroni", price: "22 lei", image: img("photo-1551751299-1b51cab2694c") },
+        { name: "Cosmopolitan", price: "25 lei", image: img("photo-1514362545857-3bc16c4c7d1b") },
+        { name: "Long Island", price: "25 lei", image: img("photo-1551538827-9c037cb4f32a") },
+        { name: "Margarita", price: "25 lei", image: img("photo-1551538827-9c037cb4f32a") },
       ]},
-      { label: "COCKTAILURI PLACEBO (0% ALCOOL)", items: [
-        { name: "Blue Lagoon", price: "15 lei" },
-        { name: "Virgin Mojito", price: "15 lei" },
-        { name: "Rainbow", price: "15 lei" },
-        { name: "Vanilla Sky", price: "15 lei" },
-        { name: "Summer Tonic", price: "13 lei" },
-        { name: "Green Apple", price: "13 lei" },
-        { name: "Vin Natureo 0%", variant: "pahar", price: "14 lei" },
-        { name: "Whitley Tonic 0%", price: "25 lei" },
+      { label: "Cu Gin", items: [
+        { name: "Gin Tonic", price: "20 lei", image: img("photo-1551538827-9c037cb4f32a") },
+        { name: "Whitley Tonic", price: "27 lei", image: img("photo-1551538827-9c037cb4f32a") },
+        { name: "Hendrick's Tonic", price: "30 lei", image: img("photo-1551538827-9c037cb4f32a") },
+        { name: "Monkey 47 Tonic", price: "33 lei", image: img("photo-1551538827-9c037cb4f32a") },
+      ]},
+      { label: "Aromate & Sweet", items: [
+        { name: "ORGASMmm", price: "23 lei", image: img("photo-1514362545857-3bc16c4c7d1b") },
+        { name: "Honey Bunny", price: "22 lei", image: img("photo-1514362545857-3bc16c4c7d1b") },
+        { name: "Vanilla Sky", price: "23 lei", image: img("photo-1514362545857-3bc16c4c7d1b") },
+        { name: "Mai Tai", price: "23 lei", image: img("photo-1551538827-9c037cb4f32a") },
+        { name: "Blue Lagoon", price: "22 lei", image: img("photo-1551538827-9c037cb4f32a") },
+        { name: "Amaretto Sour", price: "20 lei", image: img("photo-1551538827-9c037cb4f32a") },
+      ]},
+      { label: "Placebo · 0% Alcool", items: [
+        { name: "Blue Lagoon", price: "15 lei", image: img("photo-1551538827-9c037cb4f32a") },
+        { name: "Virgin Mojito", price: "15 lei", image: img("photo-1551538827-9c037cb4f32a") },
+        { name: "Rainbow", price: "15 lei", image: img("photo-1514362545857-3bc16c4c7d1b") },
+        { name: "Vanilla Sky", price: "15 lei", image: img("photo-1514362545857-3bc16c4c7d1b") },
+        { name: "Summer Tonic", price: "13 lei", image: img("photo-1551538827-9c037cb4f32a") },
       ]},
     ],
   },
   {
     id: "shots", label: "Shots", icon: "🥃",
     sections: [{
-      label: "SURSE DE NEBUNIE",
+      label: "Surse de Nebunie",
       items: [
-        { name: "Rainbow", price: "9 lei" },
-        { name: "Blowjob", price: "9 lei" },
-        { name: "B52 / Cozonac", price: "9 lei" },
-        { name: "Kamikaze", variant: "minim 4 buc.", price: "9 lei" },
-        { name: "Godfather / Mother", price: "9 lei" },
-        { name: "Amaretto Sour", variant: "minim 4 buc.", price: "9 lei" },
-        { name: "Brain Damage", price: "9 lei" },
-        { name: "Tequila Cazable", price: "14 lei" },
-        { name: "Moartea Căprioarei", price: "14 lei" },
-        { name: "Absinth", price: "12 lei" },
-        { name: "Amaro del Capo", price: "11 lei" },
+        { name: "Rainbow", price: "9 lei", image: img("photo-1514362545857-3bc16c4c7d1b") },
+        { name: "Blowjob", price: "9 lei", image: img("photo-1514362545857-3bc16c4c7d1b") },
+        { name: "B52 / Cozonac", price: "9 lei", image: img("photo-1514362545857-3bc16c4c7d1b") },
+        { name: "Kamikaze", variant: "minim 4 buc.", price: "9 lei", image: img("photo-1514362545857-3bc16c4c7d1b") },
+        { name: "Brain Damage", price: "9 lei", image: img("photo-1514362545857-3bc16c4c7d1b") },
+        { name: "Tequila Cazable", price: "14 lei", image: img("photo-1551538827-9c037cb4f32a") },
+        { name: "Absinth", price: "12 lei", image: img("photo-1551538827-9c037cb4f32a") },
+        { name: "Amaro del Capo", price: "11 lei", image: img("photo-1551538827-9c037cb4f32a") },
       ],
     }],
   },
   {
     id: "racoritoare", label: "Răcoritoare", icon: "🧊",
-    sections: [{
-      items: [
-        { name: "Cătină Pahar", variant: "300ml", price: "10 lei" },
-        { name: "Pepsi / Mirinda / 7UP", price: "9 lei" },
-        { name: "Apă Plată / Minerală", price: "7 lei" },
-        { name: "Santal Pahar", price: "7 lei" },
-        { name: "Red Bull", price: "10 lei" },
-        { name: "Fi-Ga", price: "15 lei" },
-        { name: "Fresh Portocale", variant: "300ml", price: "10 lei" },
-        { name: "Limonadă", variant: "Simplă / Mentă / Sirop (Dozator)", price: "7 / 8 / 10 lei" },
-        { name: "Ice Tea", price: "9 lei" },
-      ],
-    }],
+    sections: [
+      { label: "Fresh & Natural", items: [
+        { name: "Cătină Pahar", variant: "300ml", price: "10 lei", image: img("photo-1544787219-7f47ccb76574") },
+        { name: "Fresh Portocale", variant: "300ml", price: "10 lei", image: img("photo-1621506289937-a8e4df240d0b") },
+        { name: "Limonadă", variant: "Simplă / Mentă / Sirop", price: "7 / 8 / 10 lei", image: img("photo-1621506289937-a8e4df240d0b") },
+      ]},
+      { label: "Clasice", items: [
+        { name: "Pepsi / Mirinda / 7UP", price: "9 lei", image: img("photo-1581006852262-e4307cf6283a") },
+        { name: "Apă Plată / Minerală", price: "7 lei", image: img("photo-1581006852262-e4307cf6283a") },
+        { name: "Red Bull", price: "10 lei", image: img("photo-1581006852262-e4307cf6283a") },
+        { name: "Ice Tea", price: "9 lei", image: img("photo-1581006852262-e4307cf6283a") },
+        { name: "Santal Pahar", price: "7 lei", image: img("photo-1581006852262-e4307cf6283a") },
+        { name: "Fi-Ga", price: "15 lei", image: img("photo-1581006852262-e4307cf6283a") },
+      ]},
+    ],
   },
 ];
 
-const MenuItemRow = ({ item }: { item: MenuItem }) => (
+const MenuItemCard = ({ item }: { item: MenuItem }) => (
   <div
-    className="flex items-baseline py-3 group hover:bg-white/[0.02] transition-colors"
-    style={{ borderBottom: "1px solid rgba(255,255,255,0.05)" }}
+    className="flex items-center gap-4 p-3 rounded-lg group hover:bg-white/[0.03] transition-colors duration-200"
   >
-    <span className="font-body text-[15px] text-white shrink-0">{item.name}</span>
-    {item.variant && (
-      <span className="font-body text-[12px] text-white/40 ml-2 shrink-0">{item.variant}</span>
-    )}
-    <span className="flex-1 mx-3 mb-1 border-b border-dotted border-white/10" />
-    <span className="font-body text-[15px] text-amber shrink-0">{item.price}</span>
+    <div className="w-[80px] h-[80px] rounded-lg overflow-hidden shrink-0 bg-white/5">
+      <img
+        src={item.image}
+        alt={item.name}
+        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+        loading="lazy"
+      />
+    </div>
+    <div className="flex-1 min-w-0">
+      <h4 className="font-body text-[15px] text-white font-medium truncate">{item.name}</h4>
+      {item.variant && (
+        <p className="font-body text-[12px] text-white/35 mt-0.5 truncate">{item.variant}</p>
+      )}
+      <p className="font-body text-[15px] text-amber font-semibold mt-1">{item.price}</p>
+    </div>
   </div>
 );
 
@@ -226,16 +228,17 @@ const MenuPage = () => {
           <div className="w-[60px] h-[2px] rainbow-line mx-auto mt-4" />
         </div>
 
+        {/* Tabs */}
         <div className="overflow-x-auto scrollbar-none">
-          <div className="flex justify-center gap-2 px-4 min-w-max mx-auto">
+          <div className="flex justify-center gap-1 px-4 min-w-max mx-auto">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`font-body text-[12px] uppercase tracking-[0.12em] px-6 py-3 transition-all whitespace-nowrap ${
+                className={`font-body text-[12px] uppercase tracking-[0.1em] px-5 py-3 transition-all whitespace-nowrap rounded-full ${
                   activeTab === tab.id
-                    ? "text-white border-b-2 border-white"
-                    : "text-white/40 border-b-2 border-transparent hover:text-white/60"
+                    ? "text-white bg-white/10"
+                    : "text-white/40 hover:text-white/60"
                 }`}
               >
                 {tab.icon} {tab.label}
@@ -248,24 +251,29 @@ const MenuPage = () => {
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="max-w-[720px] mx-auto px-6 py-8 pb-24"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.25 }}
+            className="max-w-[900px] mx-auto px-4 py-8 pb-24"
           >
             {activeData.sections.map((section, si) => (
-              <div key={si}>
+              <div key={si} className="mb-8">
                 {section.label && (
-                  <h3 className="font-body text-[10px] tracking-[0.2em] uppercase text-amber mt-8 mb-3">
-                    {section.label}
-                  </h3>
+                  <div className="flex items-center gap-3 mb-4 mt-4">
+                    <div className="w-[3px] h-5 rainbow-line rounded-full" />
+                    <h3 className="font-body text-[11px] tracking-[0.18em] uppercase text-amber">
+                      {section.label}
+                    </h3>
+                  </div>
                 )}
-                {section.items.map((item, ii) => (
-                  <MenuItemRow key={ii} item={item} />
-                ))}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-1">
+                  {section.items.map((item, ii) => (
+                    <MenuItemCard key={ii} item={item} />
+                  ))}
+                </div>
                 {section.note && (
-                  <p className="font-body text-[12px] text-white/30 italic mt-2">{section.note}</p>
+                  <p className="font-body text-[12px] text-white/30 italic mt-3 pl-3">{section.note}</p>
                 )}
               </div>
             ))}
